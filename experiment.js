@@ -304,7 +304,7 @@ var chooseCondition = 1; // random(0, numConditions-1);
 var allTrialOrders = allConditions[chooseCondition-1];
 
 // Number of trials in each condition
-var numTrials = 10; //not necessarily allTrialOrders.length;
+var numTrials = 2; //not necessarily allTrialOrders.length;
 
 // Produce random order in which the trials will occur
 var shuffledOrder = shuffledArray(allTrialOrders.length);
@@ -427,11 +427,17 @@ Parameters for this sequence.
   winProbArray: new Array(numTrials),
   
   // My Results:
-  q1responseArray: new Array(numTrials),
-  q2responseArray: new Array(numTrials),
-  q3responseArray: new Array(numTrials),
-  q4responseArray: new Array(numTrials),
+  QHappyResponseArray: new Array(numTrials),
+  QSadResponseArray: new Array(numTrials),
+  QAngerResponseArray: new Array(numTrials),
+  QSurpriseResponseArray: new Array(numTrials),
  
+  QClosenessResponseArray: new Array(numTrials),
+
+  QHappyInferResponseArray: new Array(numTrials),
+  QSadInferResponseArray: new Array(numTrials),
+  QAngerInferResponseArray: new Array(numTrials),
+  QSurpriseInferResponseArray: new Array(numTrials),
 
   qVresponseArray: new Array(numTrials),
   qAresponseArray: new Array(numTrials),
@@ -500,7 +506,7 @@ The function that gets called when the sequence is finished.
 
 
   next: function() {
-  
+
   //var n = experiment.trials.shift();
   // if (typeof n == "undefined") {
   //      return experiment.end();
@@ -569,8 +575,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
       
 
@@ -590,8 +598,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("2F")) {
@@ -610,8 +620,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("2M")) {
@@ -630,8 +642,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("3F")) {
@@ -650,8 +664,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("3M")) { 
@@ -670,8 +686,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("4F")) {
@@ -690,8 +708,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("4M")) {
@@ -710,8 +730,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("5F")) {
@@ -730,10 +752,11 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
-
 
     } else if (currentLabel.includes("5M")) { 
       ImageSrc = "images/relationship_5M.png";
@@ -751,8 +774,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
     }
 
@@ -771,6 +796,8 @@ The function that gets called when the sequence is finished.
   // If this is not the first trial, record variables
   if (numComplete > 0 && numComplete < 10 ) {
     canvas.clear();
+
+    window.scrollTo(0, 0); // scroll to the top of the page
 
     currentPair = shuffledPair[numComplete];
     currentLabel = RelationshipPair[currentPair];
@@ -794,8 +821,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
       
 
@@ -815,8 +844,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("2F")) {
@@ -835,8 +866,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("2M")) {
@@ -855,8 +888,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("3F")) {
@@ -875,8 +910,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("3M")) { 
@@ -895,8 +932,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("4F")) {
@@ -915,8 +954,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("4M")) {
@@ -935,8 +976,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
 
     } else if (currentLabel.includes("5F")) {
@@ -955,8 +998,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameFemale);
       $('#CharName2').html(CharNameFemale);
       $('#CharName3').html(CharNameFemale);
+      $('#CharName4').html(CharNameFemale);
       $('#CharName_rater').html(CharNameMale);
       $('#CharName_rater2').html(CharNameMale);
+      $('#CharName_rater3').html(CharNameMale);
       $('#pronoun_rater').html(pronoun_rater);
 
 
@@ -976,8 +1021,10 @@ The function that gets called when the sequence is finished.
       $('#CharName').html(CharNameMale);
       $('#CharName2').html(CharNameMale);
       $('#CharName3').html(CharNameMale);
+      $('#CharName4').html(CharNameMale);
       $('#CharName_rater').html(CharNameFemale);
       $('#CharName_rater2').html(CharNameFemale);
+      $('#CharName_rater3').html(CharNameFemale);
       $('#pronoun_rater').html(pronoun_rater);
     }
 
@@ -1003,11 +1050,17 @@ The function that gets called when the sequence is finished.
 
             //experiment.presentationOrder[numComplete-1] = currentTrialNum;
 
-            experiment.q1responseArray[numComplete-1] = $('input[name="q1"]:checked').val();
-            experiment.q2responseArray[numComplete-1] = $('input[name="q2"]:checked').val();
-            experiment.q3responseArray[numComplete-1] = $('input[name="q3"]:checked').val();
-            experiment.q4responseArray[numComplete-1] = $('input[name="q4"]:checked').val();
+            experiment.QHappyResponseArray[numComplete-1] = $('input[name="QHappy"]:checked').val();
+            experiment.QSadResponseArray[numComplete-1] = $('input[name="QSad"]:checked').val();
+            experiment.QAngerResponseArray[numComplete-1] = $('input[name="QAnger"]:checked').val();
+            experiment.QSurpriseResponseArray[numComplete-1] = $('input[name="QSurprise"]:checked').val();
 
+            experiment.QClosenessResponseArray[numComplete-1] = $('input[name="QCloseness"]:checked').val();
+
+            experiment.QHappyInferResponseArray[numComplete-1] = $('input[name="QHappyInfer"]:checked').val();
+            experiment.QSadInferResponseArray[numComplete-1] = $('input[name="QSadInfer"]:checked').val();
+            experiment.QAngerInferResponseArray[numComplete-1] = $('input[name="QAngerInfer"]:checked').val();
+            experiment.QSurpriseInferResponseArray[numComplete-1] = $('input[name="QSurpriseInfer"]:checked').val();
 
             //var q1response = $('input[name="q1"]:checked').val();
 
@@ -1028,11 +1081,18 @@ The function that gets called when the sequence is finished.
             experiment.data.push(trial);
             
 
-            $('input[name="q1"]:').prop('checked', false);
-            $('input[name="q2"]:').prop('checked', false);
-            $('input[name="q3"]:').prop('checked', false);
-            $('input[name="q4"]:').prop('checked', false);
+            $('input[name="QHappy"]:').prop('checked', false);
+            $('input[name="QSad"]:').prop('checked', false);
+            $('input[name="QAnger"]:').prop('checked', false);
+            $('input[name="QSurprise"]:').prop('checked', false);
+
+            $('input[name="QCloseness"]:').prop('checked', false);
             
+
+            $('input[name="QHappyInfer"]:').prop('checked', false);
+            $('input[name="QSadInfer"]:').prop('checked', false);
+            $('input[name="QAngerInfer"]:').prop('checked', false);
+            $('input[name="QSurpriseInfer"]:').prop('checked', false);
 
 
 
@@ -1043,7 +1103,6 @@ The function that gets called when the sequence is finished.
   // If subject has completed all trials, update progress bar and
   // show slide to ask for demographic info
   if (numComplete >= numTrials) {
-
           $('.bar').css('width', (200.0 * numComplete/numTrials) + 'px');
           $("#trial-num").html(numComplete);
           $("#total-num").html(numTrials);
@@ -1120,13 +1179,13 @@ The function that gets called when the sequence is finished.
         spinner = canvas.pieChart(canvas.width/2+20, 200, 125, probabilityVector, payoffVector,
           colors);
 
-        hand = canvas.image("images/hand.png", canvas.width/4+160, 50, 64, 48).transform("r90");
-        goButton = canvas.rect(canvas.width/4+150,20,90,25,0).attr({fill: "#0f0"});
-        goButtonLabel = canvas.text(canvas.width/4+200,10,"Go!");
+        hand = canvas.image("images/hand.png", canvas.width/2-200, 50, 64, 48).transform("r90");
+        goButton = canvas.rect(canvas.width/2-220,20,90,25,0).attr({fill: "#0f0"});
+        goButtonLabel = canvas.text(canvas.width/2-175,10,"Go!").attr({"font-size": 17});
 
         goButton.click(function() {
           hand.animate(
-            {transform: "r90,T" + (canvas.width/10 ) + ",0"}, 1000, '<>',  
+            {transform: "r90,T" + (125 ) + ",0"}, 1000, '<>',  
               function() {
                 spinner.animate(
                   {transform: "r" + winningAngle + " " + (canvas.width/2+20) + " " + 200}, 6000, '>',

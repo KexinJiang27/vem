@@ -2,11 +2,33 @@
 supposed to be shown at each stage of the experiment. -->
 
 <html>
+
 <head>
   <title>Start page</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<link rel="stylesheet" href="style.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+         #colosenessRating {
+            display: flex;
+            justify-content: center;  /* 左对齐，使用 gap 控制间距 */
+            gap: 20px;  /* 每个选项之间的间距 */
+        }
+
+        .rating-option {
+            text-align: center; /* 使 input 和 label 居中对齐 */
+        }
+
+        .rating-option input {
+            display: block; /* 保证每个单选按钮显示为块级元素 */
+            margin-bottom: 5px; /* 为了让 label 与 input 之间有一点空间 */
+        }
+
+        .rating-option label {
+            display: block; /* 保证 label 显示在 input 正下方 */
+        }
+    </style>
 </head>
+
 <body>
 <div class="progress" id="progressBar">
 	<div class="bar-wrapper">
@@ -34,6 +56,7 @@ supposed to be shown at each stage of the experiment. -->
 </div>
 <script LANGUAGE="JavaScript">
 <!--
+
 function ValidateForm(form){
     var valid = 0;
     for(var i = 0; i < form.elements.length; i++) {
@@ -109,10 +132,15 @@ function pressEnter(e) {
 
 function ValidateRadioButtons() {
     
-    if ($('input[name="q1"]:checked').val()!=null &&
-        $('input[name="q2"]:checked').val()!=null &&
-        $('input[name="q3"]:checked').val()!=null &&
-        $('input[name="q4"]:checked').val()!=null 
+    if ($('input[name="QHappy"]:checked').val()!=null &&
+        $('input[name="QSad"]:checked').val()!=null &&
+        $('input[name="QAnger"]:checked').val()!=null &&
+        $('input[name="QSurprise"]:checked').val()!=null &&
+        $('input[name="QCloseness"]:checked').val()!=null &&
+        $('input[name="QHappyInfer"]:checked').val()!=null &&
+        $('input[name="QSadInfer"]:checked').val()!=null &&
+        $('input[name="QAngerInfer"]:checked').val()!=null &&
+        $('input[name="QSurpriseInfer"]:checked').val()!=null 
         ) {
         return true;
     } else {
@@ -133,323 +161,15 @@ function ValidateDemographicForm() {
 
 </script>
 
+<div class="slide" id="finished" style="text-align: center; font-size: 20px;">
+    You're done! Thanks for participating! 
 
-<div class="slide" id="description">
-<p id='logo-text'>Instructions</p>
-<p class="block-text"> Today, you will be watching some people play on a game show. They will be betting on a spinning wheel. The prizes that they will receive, as well as the chance that they win, will vary from game to game. Each player is accompanied by another person, who sees what the player wins but does not receive any of the prize themselves. We will ask you to guess how both the player and the observer feel after finding out the result of each game. </p>
-<p class="block-text"> You will watch a total of <span id="tot-num">{{}}</span> games. </p>
-<p class="block-text"> In different games, the player and observer will have different relationships to one another.  </p>
-
-<div id="form">
-<button type="button" onclick="this.blur(); experiment.next()">Let's Start!</button>
-</div>
-</div>
-
-<div class="slide" id="stage">
-    
-      
-    <p id="relation" style="text-align: center; font-size: 20px; margin-bottom: 20px; word-wrap: break-word; white-space: normal;">
-        <b><span id="relationText"></span></b>
-    </p>
-
-    <img id="relationPic" src = "" alt="relationPic" style="max-width: 30%; height: auto; display: block; margin: 0 auto;" >
-
-    <p id="question" style="text-align: center; font-size: 20px">
-        <b><span id="quesText1" > </span></b> 
-        <br><span id="quesText2" > </span></b> 
-        <br><span id="quesText3" > </span></b> 
-    </p> 
-    <div id="wheel" width="100%" height="300"> </div>
-
-    <!--<canvas id="spinnerCanvas" width="200" height="200"> </canvas>-->
-
-    <div id="response" style="text-align: center;">
-            <h3> <span id="CharName"> </span> has won <b>$<span id="Outcome"></span>!</b>
-                <br> <span id="responseText2"> </span>
-                <br> <span id="responseText3"> </span>
-            </h3>
-        <div id="form">
-
-        <form name="q1form">
-        &nbsp; Happiness: &nbsp; &nbsp; 
-            <span id="happinessResponse">
-                Not at all
-                    <input type="radio" name="q1" value="1" />  
-                    <input type="radio" name="q1" value="2" />  
-                    <input type="radio" name="q1" value="3" />  
-                    <input type="radio" name="q1" value="4" />  
-                    <input type="radio" name="q1" value="5" />  
-                    <input type="radio" name="q1" value="6" />  
-                    <input type="radio" name="q1" value="7" />  
-                    <input type="radio" name="q1" value="8" />  
-                    <input type="radio" name="q1" value="9" />  
-                Extremely
-            </span>
-        </form>
-               
-        <form name="q2form">
-        &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
-            <span id="sadnessResponse">
-                Not at all
-                    <input type="radio" name="q2" value="1" />  
-                    <input type="radio" name="q2" value="2" />  
-                    <input type="radio" name="q2" value="3" />  
-                    <input type="radio" name="q2" value="4" />  
-                    <input type="radio" name="q2" value="5" />  
-                    <input type="radio" name="q2" value="6" />  
-                    <input type="radio" name="q2" value="7" />  
-                    <input type="radio" name="q2" value="8" />  
-                    <input type="radio" name="q2" value="9" />  
-                Extremely
-            </span>
-        </form>
-        
-        <form name="q3form">
-        &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
-            <span id="angerResponse">
-                Not at all
-                    <input type="radio" name="q3" value="1" />  
-                    <input type="radio" name="q3" value="2" />  
-                    <input type="radio" name="q3" value="3" />  
-                    <input type="radio" name="q3" value="4" />  
-                    <input type="radio" name="q3" value="5" />  
-                    <input type="radio" name="q3" value="6" />  
-                    <input type="radio" name="q3" value="7" />
-                    <input type="radio" name="q3" value="8" />  
-                    <input type="radio" name="q3" value="9" />    
-                Extremely
-            </span>
-        </form>
-        
-        <form name="q4form">
-        &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
-            <span id="surpriseResponse">
-                Not at all
-                    <input type="radio" name="q4" value="1" />  
-                    <input type="radio" name="q4" value="2" />  
-                    <input type="radio" name="q4" value="3" />  
-                    <input type="radio" name="q4" value="4" />  
-                    <input type="radio" name="q4" value="5" />  
-                    <input type="radio" name="q4" value="6" />  
-                    <input type="radio" name="q4" value="7" />
-                    <input type="radio" name="q4" value="8" />  
-                    <input type="radio" name="q4" value="9" />    
-                Extremely
-            </span>
-        </form>
-        <br>
-        
-        <!--
-        <button type="button" id="next" onclick="this.blur(); if (ValidateNumber(document.rating.score)) {experiment.next();}">Next</button>
-        
-        </form>
-        -->
-
-        <br>
-    <!--<canvas id="spinnerCanvas" width="200" height="200"> </canvas>-->
-
-        <div id="response_relationship" > 
-        <center>
-            <h3> <b><span id="CharName_rater"></span></b> sees <b><span id="CharName2"></span></b> play. 
-            <br> How do you think <b><span id="CharName_rater2"></span></b> feels about <b><span id="CharName3"></span></b>'s outcome? 
-            <br>Please guess how strongly <span id="pronoun_rater"></span> feels for each of the following emotions:</h3>
-        </center>
-        <div id="form">
-        <!--
-        <form name="rating">
-        <span id="scale"><b>0</b> = Extremely Sad </span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="score" size="10" runat=server onkeypress="return pressEnter(event)"/>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span id="scale"><b>10</b> = Extremely Happy </span>
-        -->
-
-        <form name="q1form">
-        &nbsp; Happiness: &nbsp; &nbsp; 
-            <span id="happinessResponse">
-                Not at all
-                    <input type="radio" name="q1" value="1" />  
-                    <input type="radio" name="q1" value="2" />  
-                    <input type="radio" name="q1" value="3" />  
-                    <input type="radio" name="q1" value="4" />  
-                    <input type="radio" name="q1" value="5" />  
-                    <input type="radio" name="q1" value="6" />  
-                    <input type="radio" name="q1" value="7" />  
-                    <input type="radio" name="q1" value="8" />  
-                    <input type="radio" name="q1" value="9" />  
-                Extremely
-            </span>
-        </form>
-               
-        <form name="q2form">
-        &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
-            <span id="sadnessResponse">
-                Not at all
-                    <input type="radio" name="q2" value="1" />  
-                    <input type="radio" name="q2" value="2" />  
-                    <input type="radio" name="q2" value="3" />  
-                    <input type="radio" name="q2" value="4" />  
-                    <input type="radio" name="q2" value="5" />  
-                    <input type="radio" name="q2" value="6" />  
-                    <input type="radio" name="q2" value="7" />  
-                    <input type="radio" name="q2" value="8" />  
-                    <input type="radio" name="q2" value="9" />  
-                Extremely
-            </span>
-        </form>
-        
-        <form name="q3form">
-        &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
-            <span id="angerResponse">
-                Not at all
-                    <input type="radio" name="q3" value="1" />  
-                    <input type="radio" name="q3" value="2" />  
-                    <input type="radio" name="q3" value="3" />  
-                    <input type="radio" name="q3" value="4" />  
-                    <input type="radio" name="q3" value="5" />  
-                    <input type="radio" name="q3" value="6" />  
-                    <input type="radio" name="q3" value="7" />
-                    <input type="radio" name="q3" value="8" />  
-                    <input type="radio" name="q3" value="9" />    
-                Extremely
-            </span>
-        </form>
-        
-        <form name="q4form">
-        &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
-            <span id="surpriseResponse">
-                Not at all
-                    <input type="radio" name="q4" value="1" />  
-                    <input type="radio" name="q4" value="2" />  
-                    <input type="radio" name="q4" value="3" />  
-                    <input type="radio" name="q4" value="4" />  
-                    <input type="radio" name="q4" value="5" />  
-                    <input type="radio" name="q4" value="6" />  
-                    <input type="radio" name="q4" value="7" />
-                    <input type="radio" name="q4" value="8" />  
-                    <input type="radio" name="q4" value="9" />    
-                Extremely
-            </span>
-        </form>
-        <br> 
-
-
-        <button type="button" id="next" onclick="this.blur(); if (ValidateRadioButtons()) {experiment.next();}">Next</button>
-    
-        
-        </div>
-    </div>
-
-    <div class="slide" id="stage_relation">
-        <p Sarah sees id="question"><b><span id="CharNameMale1"> </span></b> play. 
-            </b></p>
-    
-        <!--<canvas id="spinnerCanvas" width="200" height="200"> </canvas>-->
-    
-        <div id="response">
-            <center>
-                <br> How do you think Sarah feels? Please guess how strongly she feels for each of the following emotions:</h3>
-            </center>
-            <div id="form">
-            
-        
-            
-            <!--
-            <form name="rating">
-            <span id="scale"><b>0</b> = Extremely Sad </span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="score" size="10" runat=server onkeypress="return pressEnter(event)"/>
-        &nbsp;&nbsp;&nbsp;&nbsp;<span id="scale"><b>10</b> = Extremely Happy </span>
-            -->
-    
-            <form name="q1form">
-            &nbsp; Happiness: &nbsp; &nbsp; 
-                <span id="happinessResponse">
-                    Not at all
-                        <input type="radio" name="q1" value="1" />  
-                        <input type="radio" name="q1" value="2" />  
-                        <input type="radio" name="q1" value="3" />  
-                        <input type="radio" name="q1" value="4" />  
-                        <input type="radio" name="q1" value="5" />  
-                        <input type="radio" name="q1" value="6" />  
-                        <input type="radio" name="q1" value="7" />  
-                        <input type="radio" name="q1" value="8" />  
-                        <input type="radio" name="q1" value="9" />  
-                    Extremely
-                </span>
-            </form>
-                   
-            <form name="q2form">
-            &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
-                <span id="sadnessResponse">
-                    Not at all
-                        <input type="radio" name="q2" value="1" />  
-                        <input type="radio" name="q2" value="2" />  
-                        <input type="radio" name="q2" value="3" />  
-                        <input type="radio" name="q2" value="4" />  
-                        <input type="radio" name="q2" value="5" />  
-                        <input type="radio" name="q2" value="6" />  
-                        <input type="radio" name="q2" value="7" />  
-                        <input type="radio" name="q2" value="8" />  
-                        <input type="radio" name="q2" value="9" />  
-                    Extremely
-                </span>
-            </form>
-            
-            <form name="q3form">
-            &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
-                <span id="angerResponse">
-                    Not at all
-                        <input type="radio" name="q3" value="1" />  
-                        <input type="radio" name="q3" value="2" />  
-                        <input type="radio" name="q3" value="3" />  
-                        <input type="radio" name="q3" value="4" />  
-                        <input type="radio" name="q3" value="5" />  
-                        <input type="radio" name="q3" value="6" />  
-                        <input type="radio" name="q3" value="7" />
-                        <input type="radio" name="q3" value="8" />  
-                        <input type="radio" name="q3" value="9" />    
-                    Extremely
-                </span>
-            </form>
-            
-            <form name="q4form">
-            &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
-                <span id="surpriseResponse">
-                    Not at all
-                        <input type="radio" name="q4" value="1" />  
-                        <input type="radio" name="q4" value="2" />  
-                        <input type="radio" name="q4" value="3" />  
-                        <input type="radio" name="q4" value="4" />  
-                        <input type="radio" name="q4" value="5" />  
-                        <input type="radio" name="q4" value="6" />  
-                        <input type="radio" name="q4" value="7" />
-                        <input type="radio" name="q4" value="8" />  
-                        <input type="radio" name="q4" value="9" />    
-                    Extremely
-                </span>
-            </form>
-            <br> 
-    
-            
-            <!--
-            <button type="button" id="next" onclick="this.blur(); if (ValidateNumber(document.rating.score)) {experiment.next();}">Next</button>
-            
-            </form>
-            -->
-    
-            <br>
-            <button type="button" id="next" onclick="this.blur(); if (ValidateRadioButtons()) {experiment.next();}">Next</button>
-        
-            
-            </div>
-        </div>
-    </div>
-
-
-
-    
 </div>
 
 <div class="slide" id="askInfo">
     
     <div id="form">
-    <!--
+    
     <p id="infoQ">Please answer a few questions about yourself. </p>
     <form name="gender">
     </br>
@@ -476,7 +196,6 @@ function ValidateDemographicForm() {
     <input type="text" name="nativeLanguage" /><br />
     </form>
     
-    -->
     <form name="comments">
     </br>
     </br>
@@ -493,9 +212,265 @@ function ValidateDemographicForm() {
     </div>
 </div>
 
-<div class="slide" id="finished">
-  You're finished - thanks for participating! Submitting to ...
+<div class="slide" id="description">
+    <p id='logo-text'>Instructions</p>
+    <p class="block-text"> Today you will watch players participate in a game show. 
+    The players will spin a wheel with three sections. 
+    The sections are each labeled with an amount of money, and an arrow will land on one of the sections, determining how much the player wins. 
+    The odds that the arrow will land on a given section when the wheel stops depend on the size of the section. 
+    The prizes and odds of winning more or less money will vary from game to game. </p>
+    <p class="block-text"> You will watch a total of <span id="tot-num">{{}}</span> games. </p>
+    <p class="block-text"> While each player spins the wheel, another person will watch. 
+    The other person will see what the player wins but will not receive any of the prize themselves. 
+    The relationship between the player and the observer is different across games. 
+    After each wheel spin, we will ask you to guess how both the player and the observer feel about the result. </p>
+
+    <div id="form">
+        <button type="button" onclick="this.blur(); experiment.next()">Let's Start!</button>
+    </div>
 </div>
+
+<div class="slide" id="stage">
+    
+      
+    <p id="relation" style="text-align: center; font-size: 20px; margin-bottom: 20px; word-wrap: break-word; white-space: normal;">
+        <b><span id="relationText"></span></b>
+    </p>
+
+    <img id="relationPic" src = "" alt="relationPic" style="width: 400px; height: auto; display: block; margin: 0 auto;" >
+
+    <p id="question" style="text-align: center; font-size: 20px">
+        <b><span id="quesText1" > </span></b> 
+        <br><span id="quesText2" > </span></b> 
+        <br><span id="quesText3" > </span></b> 
+    </p> 
+    
+    <div id="wheel" width="100%" height="300"> </div>
+
+    <!--<canvas id="spinnerCanvas" width="200" height="200"> </canvas>-->
+
+    <div id="response" style="text-align: center;">
+            <h3> <span id="CharName"> </span> has won <b>$<span id="Outcome"></span>!</b>
+                <br> <span id="responseText2"> </span>
+                <br> <span id="responseText3"> </span>
+            </h3>
+        <div id="form">
+
+            <form name="QHappyForm">
+            &nbsp; Happiness: &nbsp; &nbsp; 
+                <span id="happinessResponse">
+                    Not at all
+                        <input type="radio" name="QHappy" value="1" />  
+                        <input type="radio" name="QHappy" value="2" />  
+                        <input type="radio" name="QHappy" value="3" />  
+                        <input type="radio" name="QHappy" value="4" />  
+                        <input type="radio" name="QHappy" value="5" />  
+                        <input type="radio" name="QHappy" value="6" />  
+                        <input type="radio" name="QHappy" value="7" />  
+                        <input type="radio" name="QHappy" value="8" />  
+                        <input type="radio" name="QHappy" value="9" />  
+                    Extremely
+                </span>
+                </form>
+               
+            <form name="QSadForm">
+            &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
+                <span id="sadnessResponse">
+                    Not at all
+                        <input type="radio" name="QSad" value="1" />  
+                        <input type="radio" name="QSad" value="2" />  
+                        <input type="radio" name="QSad" value="3" />  
+                        <input type="radio" name="QSad" value="4" />  
+                        <input type="radio" name="QSad" value="5" />  
+                        <input type="radio" name="QSad" value="6" />  
+                        <input type="radio" name="QSad" value="7" />  
+                        <input type="radio" name="QSad" value="8" />  
+                        <input type="radio" name="QSad" value="9" />  
+                    Extremely
+                </span>
+                </form>
+        
+            <form name="QAngerForm">
+            &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
+                <span id="angerResponse">
+                    Not at all
+                        <input type="radio" name="QAnger" value="1" />  
+                        <input type="radio" name="QAnger" value="2" />  
+                        <input type="radio" name="QAnger" value="3" />  
+                        <input type="radio" name="QAnger" value="4" />  
+                        <input type="radio" name="QAnger" value="5" />  
+                        <input type="radio" name="QAnger" value="6" />  
+                        <input type="radio" name="QAnger" value="7" />
+                        <input type="radio" name="QAnger" value="8" />  
+                        <input type="radio" name="QAnger" value="9" />    
+                    Extremely
+                </span>
+                </form>
+        
+            <form name="QSurpriseForm">
+            &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
+                <span id="surpriseResponse">
+                    Not at all
+                        <input type="radio" name="QSurprise" value="1" />  
+                        <input type="radio" name="QSurprise" value="2" />  
+                        <input type="radio" name="QSurprise" value="3" />  
+                        <input type="radio" name="QSurprise" value="4" />  
+                        <input type="radio" name="QSurprise" value="5" />  
+                        <input type="radio" name="QSurprise" value="6" />  
+                        <input type="radio" name="QSurprise" value="7" />
+                        <input type="radio" name="QSurprise" value="8" />  
+                        <input type="radio" name="QSurprise" value="9" />    
+                    Extremely
+                </span>
+            </form>
+        <br>
+        
+        <!--
+        <button type="button" id="next" onclick="this.blur(); if (ValidateNumber(document.rating.score)) {experiment.next();}">Next</button>
+        
+        </form>
+        -->
+
+        <br>
+    <!--<canvas id="spinnerCanvas" width="200" height="200"> </canvas>-->
+
+    <div id = "check_closeness">
+        <center>
+            <h3>
+                <b><span id="CharName_rater"></span></b> sees <b><span id="CharName2"></span></b> play. 
+                <br>How close are <span id="CharName_rater2"></span> and <span id="CharName3"></span> ?
+            </h3>
+        </center>
+
+        <div id="form">
+            <form name="QClosenessForm">
+                <span id="colosenessRating">
+                    <div class="rating-option">
+                        <input type="radio" name="QCloseness" value="-1" />
+                        <label for="rating2">-1</label>
+                    </div>
+
+                    <div class="rating-option">
+                        <input type="radio" name="QCloseness" value="0" />
+                        <label for="rating0">0</label>
+                    </div>
+
+                    <div class="rating-option">
+                        <input type="radio" name="QCloseness" value="1" />
+                        <label for="rating1">1</label>
+                    </div>
+
+                    <div class="rating-option">
+                        <input type="radio" name="QCloseness" value="2" />
+                        <label for="rating2">2</label>
+                    </div>
+
+                    <div class="rating-option">
+                        <input type="radio" name="QCloseness" value="3" />
+                        <label for="rating3">3</label>
+                    </div>
+                </span>
+            </form>
+        </div>
+        
+    </div>
+
+
+
+    <div id="response_relationship" > 
+    <center>
+        <h3> 
+            <br> How do you think <b><span id="CharName_rater3"></span></b> feels about <b><span id="CharName4"></span></b>'s outcome? 
+            <br>Please guess how strongly <span id="pronoun_rater"></span> feels for each of the following emotions:
+        </h3>
+    </center>
+        <div id="form">
+            <!--
+            <form name="rating">
+            <span id="scale"><b>0</b> = Extremely Sad </span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="score" size="10" runat=server onkeypress="return pressEnter(event)"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span id="scale"><b>10</b> = Extremely Happy </span>
+            -->
+
+            <form name="QHappyInferForm">
+            &nbsp; Happiness: &nbsp; &nbsp; 
+                <span id="happinessResponse">
+                    Not at all
+                        <input type="radio" name="QHappyInfer" value="1" />  
+                        <input type="radio" name="QHappyInfer" value="2" />  
+                        <input type="radio" name="QHappyInfer" value="3" />  
+                        <input type="radio" name="QHappyInfer" value="4" />  
+                        <input type="radio" name="QHappyInfer" value="5" />  
+                        <input type="radio" name="QHappyInfer" value="6" />  
+                        <input type="radio" name="QHappyInfer" value="7" />  
+                        <input type="radio" name="QHappyInfer" value="8" />  
+                        <input type="radio" name="QHappyInfer" value="9" />  
+                    Extremely
+                </span> 
+            </form>
+                
+            <form name="QSadInferForm">
+            &nbsp; &nbsp; &nbsp; Sadness: &nbsp; &nbsp; &nbsp;
+                <span id="sadnessResponse">
+                    Not at all
+                        <input type="radio" name="QSadInfer" value="1" />  
+                        <input type="radio" name="QSadInfer" value="2" />  
+                        <input type="radio" name="QSadInfer" value="3" />  
+                        <input type="radio" name="QSadInfer" value="4" />  
+                        <input type="radio" name="QSadInfer" value="5" />  
+                        <input type="radio" name="QSadInfer" value="6" />  
+                        <input type="radio" name="QSadInfer" value="7" />  
+                        <input type="radio" name="QSadInfer" value="8" />  
+                        <input type="radio" name="QSadInfer" value="9" />  
+                    Extremely
+                </span>
+            </form>
+            
+            <form name="QAngerInfer">
+            &nbsp; &nbsp; &nbsp; Anger: &nbsp; &nbsp; &nbsp; &nbsp;
+                <span id="angerResponse">
+                    Not at all
+                        <input type="radio" name="QAngerInfer" value="1" />  
+                        <input type="radio" name="QAngerInfer" value="2" />  
+                        <input type="radio" name="QAngerInfer" value="3" />  
+                        <input type="radio" name="QAngerInfer" value="4" />  
+                        <input type="radio" name="QAngerInfer" value="5" />  
+                        <input type="radio" name="QAngerInfer" value="6" />  
+                        <input type="radio" name="QAngerInfer" value="7" />
+                        <input type="radio" name="QAngerInfer" value="8" />  
+                        <input type="radio" name="QAngerInfer" value="9" />    
+                    Extremely
+                </span>
+            </form>
+            
+            <form name="QSurpriseInfer">
+            &nbsp; &nbsp; Surprise: &nbsp; &nbsp; &nbsp; 
+                <span id="surpriseResponse">
+                    Not at all
+                        <input type="radio" name="QSurpriseInfer" value="1" />  
+                        <input type="radio" name="QSurpriseInfer" value="2" />  
+                        <input type="radio" name="QSurpriseInfer" value="3" />  
+                        <input type="radio" name="QSurpriseInfer" value="4" />  
+                        <input type="radio" name="QSurpriseInfer" value="5" />  
+                        <input type="radio" name="QSurpriseInfer" value="6" />  
+                        <input type="radio" name="QSurpriseInfer" value="7" />
+                        <input type="radio" name="QSurpriseInfer" value="8" />  
+                        <input type="radio" name="QSurpriseInfer" value="9" />    
+                    Extremely
+                </span>
+            </form>
+            <br> 
+
+            <button type="button" id="next" onclick="this.blur(); if (ValidateRadioButtons()) {experiment.next();}">Next</button>
+            
+        </div>
+    </div>
+
+    
+    
+</div>
+
+
+
 
 <script src="raphael.js"></script>
 <script src="experiment.js"></script>
