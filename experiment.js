@@ -304,7 +304,7 @@ var chooseCondition = 1; // random(0, numConditions-1);
 var allTrialOrders = allConditions[chooseCondition-1];
 
 // Number of trials in each condition
-var numTrials = 2; //not necessarily allTrialOrders.length;
+var numTrials = 10; //not necessarily allTrialOrders.length;
 
 // Produce random order in which the trials will occur
 var shuffledOrder = shuffledArray(allTrialOrders.length);
