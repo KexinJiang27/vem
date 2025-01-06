@@ -26,16 +26,36 @@ supposed to be shown at each stage of the experiment. -->
         .rating-option label {
             display: block; /* Ensure label is displayed directly below input */
         }
+
+        #consent { 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px; /* Optional: Adds space around the content */}
+            
+            .block-text {  
+                max-width: 80%; /* Optional: limits the width of the text block */
+                margin-bottom: 20px; /* Optional: adds space between text and iframe */
+            }
+
+            img {
+                margin-bottom: 40px; /* Adds space below the image, you can adjust the value */}
+
     </style>
+
+    
 </head>
 
 <body>
+
 <div class="progress" id="progressBar">
 	<div class="bar-wrapper">
 	  <div class="bar"></div>
 	</div>
 	<p>Progress bar: <span id="trial-num">{{}}</span><span>/</span><span id="total-num">{{}}</span></p>
 </div>
+ 
 <div class="slide" id="instructions">
   <img src="images/logo.png" alt="UCSD" style="width: 391px; height: 149px;">
     <p id='logo-text'>The SoCal Lab in UCSD</p>
@@ -44,8 +64,10 @@ supposed to be shown at each stage of the experiment. -->
     people make predictions about others' emotions, 
     following both first-person and observed experiences.  
   </p>
-  <button type="button" onclick="this.blur(); experiment.description()">Start</button>
-    <p class="block-text" id="legal">Legal information: By answering the
+  
+  <button type="button" onclick="experiment.consent()">Next</button>
+
+  <p class="block-text" id="legal">Legal information: By answering the
     following questions, you are participating in a study being performed by
     cognitive scientists in the UCSD Department of Psychology. You must be  at least 18 years old to
     participate. Your participation in this research is voluntary. You may
@@ -54,6 +76,63 @@ supposed to be shown at each stage of the experiment. -->
     anonymity is assured; the researchers who have requested your
     participation will not receive any personal information about you.</p>
 </div>
+
+<div class = "slide" id = "consent">
+    <img src="images/logo.png" alt="UCSD" style="width: 391px; height: 149px;">
+
+    <p class="block-text">
+    In order for you to participate in this study, we are required to obtain informed consent before you begin.  <br><br>
+
+    Typing your name in the following box provides your consent, however you are still able to end the study at any time.  <br><br>
+    
+    You can download a copy of this consent form for your records by clicking the button. If you have any questions about these forms, feel free to email us at 
+    <a href="mailto:socallab@ucsd.edu">socallab@ucsd.edu</a>.
+    </p>
+
+    <iframe src="https://drive.google.com/file/d/1z7tSwmiRDrUVaMNBnXaTVfC-IlNgaG0E/preview" 
+        width="680" height="800" scrolling="auto"></iframe>
+        
+
+    <!-- Download button for the PDF -->
+    <p><a href="https://drive.google.com/uc?id=1z7tSwmiRDrUVaMNBnXaTVfC-IlNgaG0E&export=download" target="_blank">
+        <button type="button">Download PDF</button>
+    </a></p>
+
+   
+   <!-- Form with a required question -->
+   <form id="ConsentForm" action="#" method="POST">
+    <p class="block-text">
+        <label for="ConsentName">If you consent to participate, please type your full legal name below to provide your consent.</label><br>
+        <input id="ConsentName" name="ConsentFormName" style="padding: 8px; margin-top: 10px;">
+    </p>
+
+    <button type="button" onclick="this.blur(); experiment.consentCheck()">Next</button>
+
+</form>
+
+</div>
+
+<div class="slide" id="description">
+    <p id='logo-text'>Instructions</p>
+    <p class="block-text"> Today you will watch players participate in a game show. 
+    The players will spin a wheel with three sections. 
+    The sections are each labeled with an amount of money, and an arrow will land on one of the sections, determining how much the player wins. 
+    The odds that the arrow will land on a given section when the wheel stops depend on the size of the section. 
+    The prizes and odds of winning more or less money will vary from game to game. </p>
+    <p class="block-text"> You will watch a total of <span id="tot-num">{{}}</span> games. </p>
+    <p class="block-text"> While each player spins the wheel, another person will watch. 
+    The other person will see what the player wins but will not receive any of the prize themselves. 
+    The relationship between the player and the observer is different across games. 
+    After each wheel spin, we will ask you to guess how both the player and the observer feel about the result. </p>
+
+    <div id="form">
+        <button type="button" onclick="this.blur(); experiment.next()">Let's Start!</button>
+    </div>
+</div>
+
+
+
+
 <script LANGUAGE="JavaScript">
 <!--
 
@@ -209,24 +288,6 @@ function ValidateDemographicForm() {
     <button type="button" onclick="this.blur(); if (ValidateDemographicForm() && ValidateSelect(document.age) && ValidateText(document.language.nativeLanguage)) {experiment.end();}">Submit</button>
     -->
 
-    </div>
-</div>
-
-<div class="slide" id="description">
-    <p id='logo-text'>Instructions</p>
-    <p class="block-text"> Today you will watch players participate in a game show. 
-    The players will spin a wheel with three sections. 
-    The sections are each labeled with an amount of money, and an arrow will land on one of the sections, determining how much the player wins. 
-    The odds that the arrow will land on a given section when the wheel stops depend on the size of the section. 
-    The prizes and odds of winning more or less money will vary from game to game. </p>
-    <p class="block-text"> You will watch a total of <span id="tot-num">{{}}</span> games. </p>
-    <p class="block-text"> While each player spins the wheel, another person will watch. 
-    The other person will see what the player wins but will not receive any of the prize themselves. 
-    The relationship between the player and the observer is different across games. 
-    After each wheel spin, we will ask you to guess how both the player and the observer feel about the result. </p>
-
-    <div id="form">
-        <button type="button" onclick="this.blur(); experiment.next()">Let's Start!</button>
     </div>
 </div>
 
